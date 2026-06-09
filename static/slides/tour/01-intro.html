@@ -1,1 +1,142 @@
-<!DOCTYPE html><html lang="zh_CN"><head><meta charset="utf-8"><link href="../../assets/present.css" rel="stylesheet"><script src="../../present.n8e91kk6.js"></script></head><body><a href="../../tour.html" class="home"></a><slide class="slide-center pop" data-pop="#tour-features" data-spot="0.5,-0.2" describe="∅M〇ᶻ Present 簡介與特點"><style>#tour-features{width:700px;height:320px}#tour-features ul{text-align:left;padding:0 .5rem;margin:.5rem 0;list-style:none}#tour-features li{margin:.5rem 0;line-height:1.5}.tour-intro{text-align:center;color:#fff;max-width:760px;padding:0 1rem}.tour-intro h1{font-size:2.8rem;margin:0 0 .75rem;letter-spacing:.06em}.tour-intro .lead{font-size:1.2rem;opacity:.9;margin-bottom:1.5rem}.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1.5rem;margin:1.5rem auto;text-align:left;font-size:1rem}.feature-grid>div{padding:.6rem .9rem;background:#ffffff14;border-radius:8px;backdrop-filter:blur(2px)}.feature-grid b{color:#ffa}.tour-intro .hint{margin-top:1rem;font-size:.95rem;opacity:.75;background:#00000033;display:inline-block;padding:.35rem .9rem;border-radius:2rem;cursor:pointer}</style><div class="tour-intro"><h1 class="glow">什麼是 ∅M〇ᶻ Present？</h1><p class="lead">一套基於原生Web標準（scroll-snap + popover + importmap）的幻燈片框架。<br>每個 slide 都是獨立 HTML，可單獨打開、分享，亦可串聯成完整 Present。</p><div class="feature-grid"><div>🧩 <b>Slide 獨立展示</b><br><small>每頁是完整 HTML，可直接打開 <code>/slides/xxx.html</code></small></div><div>💬 <b>信息彈框（Popover）</b><br><small>原生 popover + 自動定位箭頭</small></div><div>🪄 <b>懶加載 lazies.slide</b><br><small>滾動到當前頁才注入腳本/樣式</small></div><div>📦 <b>Import Map 合併</b><br><small>各 slide 自帶 importmap，自動合入主文檔</small></div><div>🧭 <b>Hash 導航</b><br><small>支持瀏覽器前進/後退、深鏈接</small></div><div>📜 <b>Scroll-Snap 切換</b><br><small>順滑、原生、零依賴</small></div></div><div class="hint">點擊本頁任意處 → 查看更多介紹（彈框示例）</div></div><div id="tour-features" class="arrow" popover><div><h2 style="margin-top:1rem">∅M〇ᶻ Present 的設計哲學</h2><ul><li>✦ <strong>原生優先</strong>：直接使用瀏覽器標準 API（Popover / Scroll-Snap / IntersectionObserver / Importmap），不依賴任何框架。</li><li>✦ <strong>漸進式呈現</strong>：頁面按需加載，未滾動到的 slide 不會觸發網絡請求。</li><li>✦ <strong>可獨立分享</strong>：任意 slide 對應一個 HTML 文件，URL 可單獨打開、嵌入或截圖。</li><li>✦ <strong>少即是多</strong>：核心邏輯集中在 <code>present.n8e91kk6.js</code>，無需學習額外 DSL。</li><li>✦ <strong>對 AI 友好</strong>：純 HTML/JSON 描述結構，便於 AI Agent 自動生成或編輯。</li></ul><p style="margin:.5rem 0;opacity:.7;font-size:.9rem">❝ 接下來的幾頁會逐步講解：寫 index、寫 slide、配置 popover ❞</p></div></div></slide></body></html>
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../assets/present.css" rel="stylesheet">
+    <script src="../../present.n8e91kk6.js"></script>
+  </head>
+  <body>
+    <a href="../../tour.html" class="home"></a><slide
+      class="slide-center pop"
+      data-pop="#tour-features"
+      data-spot="0.5,-0.2"
+      describe="∅M〇ᶻ Present 簡介與特點"
+    ><style>
+        #tour-features {
+          width: 700px;
+          height: 320px;
+        }
+        #tour-features ul {
+          text-align: left;
+          padding: 0 0.5rem;
+          margin: 0.5rem 0;
+          list-style: none;
+        }
+        #tour-features li {
+          margin: 0.5rem 0;
+          line-height: 1.5;
+        }
+        .tour-intro {
+          text-align: center;
+          color: #fff;
+          max-width: 760px;
+          padding: 0 1rem;
+        }
+        .tour-intro h1 {
+          font-size: 2.8rem;
+          margin: 0 0 0.75rem;
+          letter-spacing: 0.06em;
+        }
+        .tour-intro .lead {
+          font-size: 1.2rem;
+          opacity: 0.9;
+          margin-bottom: 1.5rem;
+        }
+        .feature-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.75rem 1.5rem;
+          margin: 1.5rem auto;
+          text-align: left;
+          font-size: 1rem;
+        }
+        .feature-grid > div {
+          padding: 0.6rem 0.9rem;
+          background: #ffffff14;
+          border-radius: 8px;
+          backdrop-filter: blur(2px);
+        }
+        .feature-grid b {
+          color: #ffa;
+        }
+        .tour-intro .hint {
+          margin-top: 1rem;
+          font-size: 0.95rem;
+          opacity: 0.75;
+          background: #00000033;
+          display: inline-block;
+          padding: 0.35rem 0.9rem;
+          border-radius: 2rem;
+          cursor: pointer;
+        }
+      </style><div class="tour-intro">
+        <h1 class="glow">什麼是 ∅M〇ᶻ Present？</h1>
+        <p class="lead">
+          一套基於原生Web標準（scroll-snap + popover +
+          importmap）的幻燈片框架。<br>每個 slide 都是獨立
+          HTML，可單獨打開、分享，亦可串聯成完整 Present。
+        </p>
+        <div class="feature-grid">
+          <div>
+            🧩 <b>Slide 獨立展示</b><br><small>每頁是完整
+              HTML，可直接打開 <code>/slides/xxx.html</code></small>
+          </div>
+          <div>
+            💬 <b>信息彈框（Popover）</b><br><small>原生 popover +
+              自動定位箭頭</small>
+          </div>
+          <div>
+            🪄 <b>懶加載 lazies.slide</b><br><small
+            >滾動到當前頁才注入腳本/樣式</small>
+          </div>
+          <div>
+            📦 <b>Import Map 合併</b><br><small>各 slide 自帶
+              importmap，自動合入主文檔</small>
+          </div>
+          <div>
+            🧭 <b>Hash 導航</b><br><small
+            >支持瀏覽器前進/後退、深鏈接</small>
+          </div>
+          <div>
+            📜 <b>Scroll-Snap 切換</b><br><small
+            >順滑、原生、零依賴</small>
+          </div>
+        </div>
+        <div class="hint">
+          點擊本頁任意處 → 查看更多介紹（彈框示例）
+        </div>
+      </div><div id="tour-features" class="arrow" popover>
+        <div>
+          <h2 style="margin-top: 1rem">∅M〇ᶻ Present 的設計哲學</h2>
+          <ul>
+            <li>
+              ✦ <strong>原生優先</strong>：直接使用瀏覽器標準
+              API（Popover / Scroll-Snap / IntersectionObserver /
+              Importmap），不依賴任何框架。
+            </li>
+            <li>
+              ✦ <strong
+              >漸進式呈現</strong>：頁面按需加載，未滾動到的
+              slide 不會觸發網絡請求。
+            </li>
+            <li>
+              ✦ <strong>可獨立分享</strong>：任意 slide 對應一個
+              HTML 文件，URL 可單獨打開、嵌入或截圖。
+            </li>
+            <li>
+              ✦ <strong>少即是多</strong>：核心邏輯集中在 <code
+              >present.n8e91kk6.js</code>，無需學習額外 DSL。
+            </li>
+            <li>
+              ✦ <strong>對 AI 友好</strong>：純 HTML/JSON
+              描述結構，便於 AI Agent 自動生成或編輯。
+            </li>
+          </ul>
+          <p style="margin: 0.5rem 0; opacity: 0.7; font-size: 0.9rem">
+            ❝ 接下來的幾頁會逐步講解：寫 index、寫
+            slide、配置 popover ❞
+          </p>
+        </div>
+      </div></slide>
+  </body>
+</html>

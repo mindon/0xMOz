@@ -1,4 +1,90 @@
-<!DOCTYPE html><html lang="zh_CN"><head><meta charset="utf-8"><link href="../../assets/present.css" rel="stylesheet"><script src="../../present.n8e91kk6.js"></script></head><body><a href="../../tour.html" class="home"></a><slide class="slide-center" topic="展示頁" describe="如何編寫 index.html 展示頁"><style>.tour-doc{color:#fff;width:min(960px,92vw);max-height:92vh;overflow-y:auto;padding:1.5rem 2rem;background:#00000044;border-radius:12px;backdrop-filter:blur(3px)}.tour-doc h1{margin:0 0 .4rem;font-size:1.9rem;letter-spacing:.05em}.tour-doc h3{margin:1.2rem 0 .5rem;color:#ffe;border-left:3px solid #06b175;padding-left:.6rem}.tour-doc p{margin:.4rem 0;opacity:.92;line-height:1.6}.tour-doc pre{background:#1b1d22;color:#e6e6e6;padding:.9rem 1rem;border-radius:8px;font-size:.85rem;line-height:1.55;overflow-x:auto;margin:.5rem 0 .8rem}.tour-doc code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:#ffd47e}.tour-doc pre code{color:#e6e6e6}.tour-doc table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.4rem 0 .8rem}.tour-doc td,.tour-doc th{padding:.4rem .6rem;border:1px solid #ffffff33;text-align:left;vertical-align:top}.tour-doc th{background:#ffffff1a;color:#ffd47e}.tour-doc td:first-child code{color:#9ad7ff}.tour-doc small{opacity:.7}</style><div class="tour-doc"><h1>① 寫 index.html — Present 入口頁</h1><p>展示頁是整個 Present 的入口，定義 slide 列表、加載順序與導航結構。 每一個 <code>&lt;slide&gt;</code> 都是滾動快照中的一頁。</p><h3>➊ 最小骨架</h3><pre><code>&lt;!DOCTYPE html&gt;
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../assets/present.css" rel="stylesheet">
+    <script src="../../present.n8e91kk6.js"></script>
+  </head>
+  <body>
+    <a href="../../tour.html" class="home"></a><slide
+      class="slide-center"
+      topic="展示頁"
+      describe="如何編寫 index.html 展示頁"
+    ><style>
+        .tour-doc {
+          color: #fff;
+          width: min(960px, 92vw);
+          max-height: 92vh;
+          overflow-y: auto;
+          padding: 1.5rem 2rem;
+          background: #00000044;
+          border-radius: 12px;
+          backdrop-filter: blur(3px);
+        }
+        .tour-doc h1 {
+          margin: 0 0 0.4rem;
+          font-size: 1.9rem;
+          letter-spacing: 0.05em;
+        }
+        .tour-doc h3 {
+          margin: 1.2rem 0 0.5rem;
+          color: #ffe;
+          border-left: 3px solid #06b175;
+          padding-left: 0.6rem;
+        }
+        .tour-doc p {
+          margin: 0.4rem 0;
+          opacity: 0.92;
+          line-height: 1.6;
+        }
+        .tour-doc pre {
+          background: #1b1d22;
+          color: #e6e6e6;
+          padding: 0.9rem 1rem;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          line-height: 1.55;
+          overflow-x: auto;
+          margin: 0.5rem 0 0.8rem;
+        }
+        .tour-doc code {
+          font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+          color: #ffd47e;
+        }
+        .tour-doc pre code {
+          color: #e6e6e6;
+        }
+        .tour-doc table {
+          border-collapse: collapse;
+          width: 100%;
+          font-size: 0.9rem;
+          margin: 0.4rem 0 0.8rem;
+        }
+        .tour-doc td, .tour-doc th {
+          padding: 0.4rem 0.6rem;
+          border: 1px solid #ffffff33;
+          text-align: left;
+          vertical-align: top;
+        }
+        .tour-doc th {
+          background: #ffffff1a;
+          color: #ffd47e;
+        }
+        .tour-doc td:first-child code {
+          color: #9ad7ff;
+        }
+        .tour-doc small {
+          opacity: 0.7;
+        }
+      </style><div class="tour-doc">
+        <h1>① 寫 index.html — Present 入口頁</h1>
+        <p>
+          展示頁是整個 Present 的入口，定義 slide
+          列表、加載順序與導航結構。 每一個 <code
+          >&lt;slide&gt;</code> 都是滾動快照中的一頁。
+        </p>
+        <h3>➊ 最小骨架</h3>
+        <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh_CN"&gt;
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
@@ -15,11 +101,107 @@
     &lt;/div&gt;
     &lt;div id="snap-points"&gt;&lt;/div&gt;
   &lt;/body&gt;
-&lt;/html&gt;</code></pre><p><small>❝ <code>.scroll-snap</code> 容器啟用滾動快照； <code>#snap-points</code> 是右側自動生成的目錄錨點容器。</small></p><h3>➋ &lt;slide&gt; 屬性速查</h3><table><thead><tr><th>屬性</th><th>說明（*為內容頁面使用）</th><th>示例</th></tr></thead><tbody><tr><td><code>topic</code></td><td>當前頁標題，自動生成右側導航與 URL hash</td><td><code>topic="封面"</code></td></tr><tr><td><code>data-src</code></td><td>該 slide 的內容頁路徑（<b>相對於 <code>slides/</code></b>）</td><td><code>data-src="cover.html"</code></td></tr><tr><td><code>data-lazy</code></td><td>* 對應 <code>lazies.slide(key, fn)</code> 註冊的初始化函數鍵</td><td><code>data-lazy="my-init"</code></td></tr><tr><td><code>instantly</code></td><td>可选布爾屬性。設置後立即加載，不等待滾動到該頁</td><td><code>instantly</code></td></tr><tr><td><code>class="slide-center"</code></td><td>內容垂直水平居中</td><td><code>class="slide-center"</code></td></tr><tr><td><code>class="pop"</code></td><td>* 啟用點擊彈框（需配合 <code>data-pop</code>）</td><td><code>class="slide-center pop"</code></td></tr><tr><td><code>data-pop</code></td><td>* 彈框元素選擇器（一般為 <code>#xxx</code>）</td><td><code>data-pop="#info"</code></td></tr><tr><td><code>data-spot</code></td><td>* 固定彈框錨定位置（可選） <code>x,y</code>，支持百分比/負值</td><td><code>data-spot="0.5,0.3"</code></td></tr><tr><td><code>web-or-not</code></td><td>* 啟用網絡探測，配合 <code>.web-yes</code> / <code>.web-no</code> 分支顯示</td><td><code>web-or-not</code></td></tr></tbody></table><h3>➌ 路徑約定</h3><p><code>data-src="foo.html"</code> 會被 <code>present.n8e91kk6.js</code> 解析為 <code>fetch("slides/foo.html")</code>；<br>因此 index.html 必須放在 <code>slides/</code> 的<strong>父目錄</strong>，而所有 slide 內容頁放在 <code>slides/</code> 之下。</p><pre><code>your-project/
+&lt;/html&gt;</code></pre>
+        <p>
+          <small>❝ <code>.scroll-snap</code> 容器啟用滾動快照； <code
+            >#snap-points</code>
+            是右側自動生成的目錄錨點容器。</small>
+        </p>
+        <h3>➋ &lt;slide&gt; 屬性速查</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>屬性</th>
+              <th>說明（*為內容頁面使用）</th>
+              <th>示例</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>topic</code></td>
+              <td>當前頁標題，自動生成右側導航與 URL hash</td>
+              <td><code>topic="封面"</code></td>
+            </tr>
+            <tr>
+              <td><code>data-src</code></td>
+              <td>
+                該 slide 的內容頁路徑（<b>相對於 <code
+                  >slides/</code></b>）
+              </td>
+              <td><code>data-src="cover.html"</code></td>
+            </tr>
+            <tr>
+              <td><code>data-lazy</code></td>
+              <td>
+                * 對應 <code>lazies.slide(key, fn)</code>
+                註冊的初始化函數鍵
+              </td>
+              <td><code>data-lazy="my-init"</code></td>
+            </tr>
+            <tr>
+              <td><code>instantly</code></td>
+              <td>
+                可选布爾屬性。設置後立即加載，不等待滾動到該頁
+              </td>
+              <td><code>instantly</code></td>
+            </tr>
+            <tr>
+              <td><code>class="slide-center"</code></td>
+              <td>內容垂直水平居中</td>
+              <td><code>class="slide-center"</code></td>
+            </tr>
+            <tr>
+              <td><code>class="pop"</code></td>
+              <td>* 啟用點擊彈框（需配合 <code>data-pop</code>）</td>
+              <td><code>class="slide-center pop"</code></td>
+            </tr>
+            <tr>
+              <td><code>data-pop</code></td>
+              <td>* 彈框元素選擇器（一般為 <code>#xxx</code>）</td>
+              <td><code>data-pop="#info"</code></td>
+            </tr>
+            <tr>
+              <td><code>data-spot</code></td>
+              <td>
+                * 固定彈框錨定位置（可選） <code
+                >x,y</code>，支持百分比/負值
+              </td>
+              <td><code>data-spot="0.5,0.3"</code></td>
+            </tr>
+            <tr>
+              <td><code>web-or-not</code></td>
+              <td>
+                * 啟用網絡探測，配合 <code>.web-yes</code> / <code
+                >.web-no</code> 分支顯示
+              </td>
+              <td><code>web-or-not</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>➌ 路徑約定</h3>
+        <p>
+          <code>data-src="foo.html"</code> 會被 <code
+          >present.n8e91kk6.js</code> 解析為 <code
+          >fetch("slides/foo.html")</code>；<br>因此 index.html 必須放在
+          <code>slides/</code> 的<strong>父目錄</strong>，而所有 slide
+          內容頁放在 <code>slides/</code> 之下。
+        </p>
+        <pre><code>your-project/
 ├─ index.html        ← 展示頁入口
 ├─ assets/present.css
 ├─ present.n8e91kk6.js
 └─ slides/
    ├─ cover.html     ← &lt;slide data-src="cover.html"&gt;
    ├─ page2.html
-   └─ more.html</code></pre><h3>➍ 直接打開單頁</h3><p>所有 slide 內容頁都是<strong>完整可獨立打開</strong>的 HTML，比如： <code>/slides/cover.html</code> 可直接訪問， <code>present.n8e91kk6.js</code> 會自動切換到「單頁模式」並添加 ❝ HOME ❞ 跳回按鈕。</p></div></slide></body></html>
+   └─ more.html</code></pre>
+        <h3>➍ 直接打開單頁</h3>
+        <p>
+          所有 slide 內容頁都是<strong>完整可獨立打開</strong>的
+          HTML，比如： <code>/slides/cover.html</code> 可直接訪問，
+          <code>present.n8e91kk6.js</code>
+          會自動切換到「單頁模式」並添加 ❝ HOME ❞
+          跳回按鈕。
+        </p>
+      </div></slide>
+  </body>
+</html>
