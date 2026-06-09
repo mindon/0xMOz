@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "GlowSansTC-Extended-Book";
+    src: local("GlowSansTC-Extended-Book"),
+    url("./GlowSansTC-Extended-Book.woff2") format("woff2"); /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    font-style: normal;
+    font-weight: normal;
+}

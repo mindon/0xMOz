@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="utf-8"><link href="../../assets/present.css" rel="stylesheet"><script src="../../present.n8e91kk6.js"></script></head><body><a href="../../tour.html" class="home"></a><slide class="slide-center pop" data-pop="#tour-pop-demo" describe="如何配置 Arrow Popover 信息彈框"><style>#tour-pop-demo{width:560px;height:280px}#tour-pop-demo h2{margin:.6rem 0 .4rem}#tour-pop-demo p{margin:.4rem 0;line-height:1.6}#tour-pop-demo .ok{color:#06b175;font-weight:700}#another-pop-demo{width:320px;height:240px;--pop-background:#5964ff;--arrow-color:#5964ff;color:#ffd}#another-pop-demo>div{padding:1rem .5rem}#another-pop-demo p{text-align:center}.pop-doc{color:#fff;width:min(960px,94vw);max-height:92vh;overflow-y:auto;padding:1.5rem 2rem;background:#00000044;border-radius:12px;backdrop-filter:blur(3px)}.pop-doc h1{margin:0 0 .5rem;font-size:1.9rem}.pop-doc h3{margin:1.1rem 0 .5rem;color:#ffe;border-left:3px solid #ff9d3d;padding-left:.6rem}.pop-doc p{margin:.4rem 0;opacity:.92;line-height:1.6}.pop-doc pre{background:#1b1d22;color:#e6e6e6;padding:.9rem 1rem;border-radius:8px;font-size:.82rem;line-height:1.55;overflow-x:auto;margin:.5rem 0 .8rem}.pop-doc code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:#ffd47e}.pop-doc pre code{color:#e6e6e6}.pop-doc .demo-hint{display:inline-block;padding:.45rem 1rem;background:linear-gradient(90deg,#1559d0,#06b175);color:#fff;border-radius:2rem;margin:.4rem 0 .6rem;cursor:pointer;box-shadow:0 2px 12px #00000055}.pop-doc table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.4rem 0 .8rem}.pop-doc td,.pop-doc th{padding:.4rem .6rem;border:1px solid #ffffff33;text-align:left;vertical-align:top}.pop-doc th{background:#ffffff1a;color:#ffd47e}</style><div class="pop-doc"><h1>③ 配置 Arrow Popover 信息彈框</h1><p><span class="demo-hint">👉 點擊頁面任意空白處試試！</span> 當前頁就是一個 popover slide，框架會根據點擊位置自動<strong>定位箭頭方向</strong>（東/西/南/北）。</p><h3>➊ 在 slide 上聲明</h3><pre><code>&lt;slide
+  class="slide-center pop"
+  data-pop="#info"
+  data-spot="0.5,0.3"
+  describe="頁面說明"
+&gt;
+  ... 主體內容 ...
+
+  &lt;!-- popover 元素：必須是 popover 屬性 + class="arrow" --&gt;
+  &lt;div id="info" class="arrow" popover&gt;
+    &lt;div&gt;
+      &lt;h2&gt;標題&lt;/h2&gt;
+      &lt;p&gt;詳情內容…&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/slide&gt;</code></pre><p>結構要點：</p><ul><li><code>&lt;slide class="pop"&gt;</code> 啟用點擊監聽</li><li><code>data-pop="#xxx"</code> 指定要彈出的元素 ID 選擇器</li><li>該元素必須帶原生 <code>popover</code> 屬性 + <code>class="arrow"</code></li><li>內部用 <code>&lt;div&gt;</code> 包一層作為「白底卡片」（CSS 已預置）</li></ul><h3>➋ 屬性速查</h3><table><thead><tr><th>屬性</th><th>說明</th></tr></thead><tbody><tr><td><code>class="pop"</code></td><td>放在 <code>&lt;slide&gt;</code>（或任意祖先）上，啟用點擊彈出邏輯</td></tr><tr><td><code>data-pop="#xxx"</code></td><td>彈框元素的選擇器；ID 推薦，必須在當前頁可選中</td></tr><tr><td><code>data-spot="x,y"</code></td><td>可選固定箭頭尖錨點位置。（無則自動採用點擊位置）<br>規則：<code>|v| ≤ 1</code> 視為比例（負值表示反向：<code>-0.3</code> 即 <code>1-0.3=0.7</code>）；<br>絕對值 &gt; 1 視為像素值。可只填一個分量留空另一個。</td></tr><tr><td><code>id="xxx" popover class="arrow"</code></td><td>彈框元素三件套；<code>class="arrow"</code> 帶箭頭視覺</td></tr></tbody></table><h3>❸ 自動定位機制</h3><p>框架點擊後會：<br>⑴ 根據 click 座標 / <code>data-spot</code> 計算錨點 <code>(x, y)</code>；<br>⑵ 調用 <code>showPopover()</code>，讀取 <code>--arrow-size</code>；<br>⑶ 根據 (x, y) 與 viewport 的關係，自動添加 <code>.arrow-east|west|north|south</code> 類；<br>⑷ 設置 CSS 變量 <code>--pop-x</code>、<code>--pop-y</code>、<code>--pop-alpha</code>，箭頭精準對準目標點；<br>⑸ 若點擊在彈框內部，自動切換為「居中模式」並上移避讓。</p><h3>❹ 自定義樣式</h3><pre><code>/* 覆蓋默認尺寸 */
+#info {
+  width: 600px;
+  height: 420px;
+}
+
+/* 覆蓋箭頭大小（默認 35px） */
+::popover-open {
+  --arrow-size: 28px;
+}
+
+/* 覆蓋背板色 */
+.arrow &gt; div {
+  background: #fff8e7;  /* 默認 #fff */
+}</code></pre><h3>❺ 多 popover 共存</h3><p>一個 slide 內可放多個 <code>[popover]</code>，但 <code>data-pop</code> 一次只彈一個。如需多觸發點， 可在 slide 內部嵌套帶 <code>class="pop" data-pop="#yyy"</code> 的子元素 — 框架使用<strong>就近祖先</strong>查找 <code>.pop</code>。<button class="pop" data-pop="#another-pop-demo">一个小popover框</button></p><pre><code>&lt;slide&gt;
+  &lt;button class="pop" data-pop="#tip-a"&gt;A&lt;/button&gt;
+  &lt;button class="pop" data-pop="#tip-b"&gt;B&lt;/button&gt;
+
+  &lt;div id="tip-a" class="arrow" popover&gt;&lt;div&gt;... A ...&lt;/div&gt;&lt;/div&gt;
+  &lt;div id="tip-b" class="arrow" popover&gt;&lt;div&gt;... B ...&lt;/div&gt;&lt;/div&gt;
+&lt;/slide&gt;</code></pre><h3>➏ 關閉行為</h3><ul><li>再次點擊同一觸發點 → 關閉</li><li>點擊 <code>::backdrop</code> 區域 → 關閉（瀏覽器原生）</li><li>按 <kbd>Esc</kbd> → 關閉</li></ul><p style="opacity:.7;margin-top:1.4rem">🎉 <strong>恭喜，你已經完成了 ∅M〇ᶻ Present 全部基礎指引。</strong><br>現在試試：在頁面任意空白處點一下，看看本頁的 popover 演示 →</p></div><div id="another-pop-demo" class="arrow" popover><div><p>∅M〇ᶻ 零末之翎</p><p><img src="../../assets/0xMOz.svg" width="128" height="128"></p></div></div><div id="tour-pop-demo" class="arrow" popover><div><h2>🎯 這就是 Popover 效果！</h2><p><span class="ok">✓</span> 點擊位置決定錨點<br><span class="ok">✓</span> 箭頭方向自動計算（east / west / north / south）<br><span class="ok">✓</span> 邊緣會自動避讓 viewport<br><span class="ok">✓</span> 點 backdrop / 按 Esc 關閉</p><hr style="margin:.8rem 0;opacity:.3"><p>試試在頁面<strong>不同位置</strong>多點幾次，觀察箭頭朝向的變化 —— 這就是 <code>::popover-open</code> + <code>--pop-x/--pop-y/--pop-alpha</code> 的協作。</p><p style="opacity:.6;font-size:.9rem;margin-top:1rem">❝ 該效果完全基於原生 Popover API + CSS 變量；無 JS 動畫框架依賴 ❞</p></div></div></slide></body></html>
