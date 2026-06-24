@@ -46,9 +46,29 @@ src/
 ### `index.html`
 
 ```html
-<script src="./present.5d6s8xrx.js"></script>
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>零末之翎（∅M〇ᶻ）</title>
+    <script type="importmap">{
+      "imports":{
+        "@lit/reactive-element/":"https://cdn.jsdelivr.net/npm/@lit/reactive-element@2.1.1/"
+      }
+    }</script>
+    <link href="./assets/present.css" rel="stylesheet">
+    <script src="./present.5d6s8xrx.js"></script>
+  </head>
+  <body>
+    <div class="scroll-snap">
 <slide topic="封面" data-src="./slides/about.html"></slide>
-<slide topic="更多" data-src="./slides/more.html"></slide>
+<slide topic="更多" data-src="./slides/more.html" data-lazy="more"></slide>
+    </div>
+    <!-- scroll-snap -->
+    <div id="snap-points"></div>
+  </body>
+</html>
 ```
 
 ### slide 内容页骨架
@@ -58,6 +78,7 @@ src/
 <html>
   <head>
     <script type="importmap">{ "imports": { /* ... */ } }</script>
+    <link href="../assets/present.css" rel="stylesheet">
     <script src="../present.5d6s8xrx.js"></script>
   </head>
   <body>
