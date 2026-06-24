@@ -37,7 +37,7 @@ src/
 ├─ assets/                 静态资源（CSS / 字体 / SVG）
 ├─ slides/                 各演示页
 │  └─ tour/                指引子页（00-cover ~ 04-popover）
-├─ present.n8e91kk6.js     核心运行时
+├─ present.5d6s8xrx.js     核心运行时
 └─ tour.html               使用指引入口
 ```
 
@@ -46,7 +46,7 @@ src/
 ### `index.html`
 
 ```html
-<script src="./present.n8e91kk6.js"></script>
+<script src="./present.5d6s8xrx.js"></script>
 <slide topic="封面" data-src="./slides/about.html"></slide>
 <slide topic="更多" data-src="./slides/more.html"></slide>
 ```
@@ -58,7 +58,7 @@ src/
 <html>
   <head>
     <script type="importmap">{ "imports": { /* ... */ } }</script>
-    <script src="../present.n8e91kk6.js"></script>
+    <script src="../present.5d6s8xrx.js"></script>
   </head>
   <body>
     <slide topic="..." class="slide-center pop" data-pop="...">
