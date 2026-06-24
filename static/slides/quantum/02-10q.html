@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+    <link href="../../assets/present.css" rel="stylesheet">
+    <script src="../../present.stjvtw1s.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "@lit/reactive-element/": "https://cdn.jsdelivr.net/npm/@lit/reactive-element@2.1.1/"
+      }
+    }
+    </script>
+  </head>
+
+  <body>
+    <a href="../../quantum.html" class="home"></a>
+    <slide
+      class="slide-center"
+      topic="10 Qubits"
+      data-lazy="flippize"
+    >
+      <style>
+        flip.dev {
+          background-image: var(--qlab-fx);
+        }
+        atm-flip {
+          box-shadow: 0 0 30px #00000033;
+        }
+      </style>
+      <div>
+        <atm-flip hashed="off" landscape><!-- auto="5" -->
+          <flip key="10q" title="10 Qubits" class="dev">
+            <div style="text-align: left">
+              <h1>10 QUBITS</h1>
+
+              <pre>
+2¹⁰ = 1024
+</pre>
+
+              <p>
+                普通电脑就能模拟
+              </p>
+
+              <h2>
+                它是实验设备
+                <br>
+                不是计算设备
+              </h2>
+            </div>
+          </flip>
+
+          <flip key="noise" title="Noise 噪声" class="dev">
+            <div style="text-align: left">
+              <h1>研究错误</h1>
+
+              <ul>
+                <li>Bell State</li>
+                <li>GHZ State</li>
+                <li>W State</li>
+              </ul>
+
+              <br>
+
+              <p>
+                观察
+              </p>
+
+              <ul>
+                <li>Decoherence</li>
+                <li>Amplitude Damping</li>
+                <li>Phase Damping</li>
+              </ul>
+            </div>
+          </flip>
+
+          <flip key="control" title="Control 控制" class="dev">
+            <div style="text-align: left">
+              <h1>
+                Quantum Control
+              </h1>
+              <br />
+              <pre>
+ Quantum Chip
+      ↑
+    Agent
+        </pre>
+
+              <p>
+                不断尝试
+              </p>
+
+              <ul>
+                <li>Pulse</li>
+                <li>Gate</li>
+                <li>Sequence</li>
+              </ul>
+
+              <br>
+
+              <p>
+                不是计算答案
+                <br>
+                而是学习如何控制现实
+              </p>
+            </div>
+          </flip>
+        </atm-flip>
+      </div>
+    </slide>
+  </body>
+</html>
