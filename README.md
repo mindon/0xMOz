@@ -61,7 +61,12 @@ src/
     <script src="../present.n8e91kk6.js"></script>
   </head>
   <body>
-    <slide topic="slide-center pop" data-pop="#tip"></slide>
+    <slide topic="..." class="slide-center pop" data-pop="...">
+        <style>/* slide body css styles */</style>
+        <div>
+            <!-- 内容 -->
+        </div>
+    </slide>
     <div id="tip" class="arrow" popover>...</div>
   </body>
 </html>
